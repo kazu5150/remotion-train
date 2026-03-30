@@ -43,15 +43,12 @@ const AUDIO_FILES = [
 ];
 
 // ── calculateMetadata ──────────────────────────────────────
+// NOTE: Audio-based duration calculation disabled until audio files are generated.
+// Uncomment and replace the block below once voiceover files exist.
 export const calculateOrphansOfTheSkyMetadata: CalculateMetadataFunction<
   Props
 > = async () => {
-  const durations = await Promise.all(
-    AUDIO_FILES.map((file) => getAudioDuration(staticFile(file)))
-  );
-  const sceneDurations = durations.map(
-    (sec) => Math.ceil(sec * FPS) + PADDING_FRAMES
-  );
+  const sceneDurations = [180, 210, 240, 210, 210, 180];
   return {
     durationInFrames: sceneDurations.reduce((sum, d) => sum + d, 0),
     props: { sceneDurations },
@@ -680,7 +677,7 @@ export const OrphansOfTheSkyVideo: React.FC<Props> = ({ sceneDurations }) => {
   let offset = 0;
   return (
     <AbsoluteFill style={{ backgroundColor: BG }}>
-      {/* BGM */}
+      {/* BGM - disabled until audio files are generated
       <Audio
         src={staticFile("voiceover/orphans-of-the-sky/bgm.mp3")}
         volume={(f) => {
@@ -697,6 +694,7 @@ export const OrphansOfTheSkyVideo: React.FC<Props> = ({ sceneDurations }) => {
           return Math.min(fadeIn, fadeOut);
         }}
       />
+      */}
 
       {scenes.map((SceneComp, i) => {
         const from = offset;
@@ -705,7 +703,9 @@ export const OrphansOfTheSkyVideo: React.FC<Props> = ({ sceneDurations }) => {
         return (
           <Sequence key={i} from={from} durationInFrames={dur} premountFor={15}>
             <SceneComp duration={dur} />
+            {/* Audio disabled until files are generated
             <Audio src={staticFile(AUDIO_FILES[i])} />
+            */}
           </Sequence>
         );
       })}
