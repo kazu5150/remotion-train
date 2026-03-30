@@ -36,6 +36,11 @@ import {
   doorIntoSummerSchema,
   calculateDoorIntoSummerMetadata,
 } from "./DoorIntoSummerVideo";
+import {
+  OrphansOfTheSkyVideo,
+  orphansOfTheSkySchema,
+  calculateOrphansOfTheSkyMetadata,
+} from "./OrphansOfTheSkyVideo";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -168,6 +173,17 @@ export const RemotionRoot: React.FC = () => {
         schema={doorIntoSummerSchema}
         defaultProps={{ sceneDurations: [180, 210, 240, 210, 210, 180] }}
         calculateMetadata={calculateDoorIntoSummerMetadata}
+      />
+      <Composition
+        id="OrphansOfTheSky"
+        component={OrphansOfTheSkyVideo}
+        durationInFrames={1200}
+        fps={30}
+        width={1920}
+        height={1080}
+        schema={orphansOfTheSkySchema}
+        defaultProps={{ sceneDurations: [180, 210, 240, 210, 210, 180] }}
+        calculateMetadata={calculateOrphansOfTheSkyMetadata}
       />
     </>
   );
