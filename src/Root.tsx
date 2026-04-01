@@ -41,6 +41,11 @@ import {
   orphansOfTheSkySchema,
   calculateOrphansOfTheSkyMetadata,
 } from "./OrphansOfTheSkyVideo";
+import {
+  DeepLearningMnistVideo,
+  deepLearningMnistSchema,
+  calculateDeepLearningMnistMetadata,
+} from "./DeepLearningMnistVideo";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -184,6 +189,17 @@ export const RemotionRoot: React.FC = () => {
         schema={orphansOfTheSkySchema}
         defaultProps={{ sceneDurations: [180, 210, 240, 210, 210, 180] }}
         calculateMetadata={calculateOrphansOfTheSkyMetadata}
+      />
+      <Composition
+        id="DeepLearningMnist"
+        component={DeepLearningMnistVideo}
+        durationInFrames={1200}
+        fps={30}
+        width={1920}
+        height={1080}
+        schema={deepLearningMnistSchema}
+        defaultProps={{ sceneDurations: [180, 210, 210, 240, 240, 150] }}
+        calculateMetadata={calculateDeepLearningMnistMetadata}
       />
     </>
   );
